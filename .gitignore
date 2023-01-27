@@ -1,0 +1,7 @@
+*.html
+*.pdf
+*_files/
+!docs/*
+*.rproj
+.Rhistory
+.Rproj.user/
