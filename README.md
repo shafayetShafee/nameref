@@ -4,6 +4,8 @@ A Quarto filter extension that allows to refer to section (like what latex packa
 
 ## Installing
 
+*Note that, it is [recommended](https://quarto.org/docs/extensions/) to use a quarto version at least 1.2 to work with extensions.*
+
 ```bash
 quarto add shafayetShafee/nameref
 ```
@@ -91,4 +93,9 @@ And this looks like,
 ## Example
 
 Here is the source code for a example: [example.qmd](example.qmd), containing the above all examples together in one place and the [live demo](https://shafayetshafee.github.io/nameref/example.html) of the rendered document in HTML output format. 
+
+
+## Limitations
+
+This filter does not work across chapters of Book for now. It works within a chapter but does not across, that is, you can not `nameref` a section (or image/table) in one chapter from another chapter. This is because, as per my knowledge, quarto filter applies to each chapter qmd file separately and I do not know how to make it work for all chapter qmd files at once. So if anybody knows this, [please let me know](https://github.com/shafayetShafee/nameref/pulls).
 
