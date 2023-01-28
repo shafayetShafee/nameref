@@ -92,7 +92,7 @@ And this looks like,
 
 ## Example
 
-Here is the source code for a example: [example.qmd](example.qmd), containing the above all examples together in one place and the [live demo](https://shafayetshafee.github.io/nameref/example.html) of the rendered document in HTML output format. 
+Here is the source code for a example: [example.qmd](example.qmd), containing the above all examples together in one place and the [live demo](https://shafayetshafee.github.io/nameref/example.html) of the rendered document in HTML output format. Also to see how `nameref` looks like in pdf format, [download](https://github.com/shafayetShafee/nameref/raw/main/docs/example.pdf) the rendered pdf output of `example.qmd` file.
 
 
 ## Limitations
