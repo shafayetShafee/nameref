@@ -1,13 +1,18 @@
 local str = pandoc.utils.stringify
+-- local p = quarto.log.output
 
 function get_header_data(data)
   local get_headers = {
+      -- get the Header text and header id from headers and 
+      -- insert them into table `data` passed into `get_header_data`
       Header = function(el)
         local id = el.identifier
         local text = str(el.content):gsub("^[%d.]+ ", "")
         table.insert(data, {id = id, text = text})
       end,
       
+      -- get the id and title attribute from pandoc div, so the
+      -- generated output has this id and can be referred with.
       Div = function(el)
         if el.attributes["link-id"] then
           local id = el.attributes["link-id"]
@@ -19,8 +24,10 @@ function get_header_data(data)
   return get_headers
 end
 
+
 function change_ref(data)
   local change_rawinline = {
+    -- change the nameref instance with pandoc.Link
     RawInline = function(el)
       for key, value in pairs(data) do
         if el.text:match("\\nameref{(.*)}") == value.id then
@@ -34,27 +41,38 @@ function change_ref(data)
   return change_rawinline
 end
 
+
 local function add_div_id(div)
   return {
-   Div = function(elem)
-     if elem.classes:includes("cell-output-display") 
-      or elem.classes:includes("cell-output-stdout")then
-      elem.identifier = div.attributes["link-id"]
-      return elem
-     end
-  end
+    -- add id to div with `cell-output-stdout` or 
+    -- `cell-output-display`
+    Div = function(elem)
+      if elem.classes:includes("cell-output-display") 
+        or elem.classes:includes("cell-output-stdout") then
+          elem.identifier = div.attributes["link-id"]
+          return elem
+      end
+    end
   }
 end
 
 function Div(el)
-  if el.classes:includes('link') then
+  -- target those div with attribute `link-id`
+  if el.attributes["link-id"] then
+    -- for markdown syntax (image or table) wrapped withing
+    -- div with `link`
+    if el.classes:includes('link') then
+      el.identifier = el.attributes["link-id"]
+    end
     return el:walk(add_div_id(el))
   end
 end
 
 function Pandoc(doc)
   local header_data = {}
+  -- populate the header_data table 
   doc:walk(get_header_data(header_data))
+  -- generate named link inplaces with `\nameref`
   return doc:walk(change_ref(header_data))
 end
 

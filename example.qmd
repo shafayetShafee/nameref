@@ -1,70 +1,66 @@
 ---
-title: "Cross Referencing the Name"
-author: Shafee
-format: 
+title: "Cross Referencing the Name (section name, fig-name, table-name)"
+author: Shafayet Khan Shafee
+date: last-modified
+format:
   html: default
   pdf: default
 number-sections: true
+df-print: kable
 filters: 
   - nameref
 ---
 
 # Why Quarto is so great {#sec-stack}
 
-`r stringi::stri_rand_lipsum(1)`
-See \nameref{sec-stack}.
+`r stringi::stri_rand_lipsum(1)`. See \nameref{sec-stack}. Also you can use quarto way to refer to @sec-stack.
 
 ## How it is so {#how}
 
-`r stringi::stri_rand_lipsum(1)`
-See \nameref{how}.
+`r stringi::stri_rand_lipsum(1)`. See \nameref{how}.
 
 ## Images
 
 ```{r}
-#| classes: link
 #| link-id: fig1
 #| link-title: My Awesome plot
+#| label: fig-random-plot
+#| fig-cap: "An useless plot for demo"
 
 plot(1:10)
 ```
 
-`r stringi::stri_rand_lipsum(1)`
-see \nameref{fig1}
+`r stringi::stri_rand_lipsum(1)`. See \nameref{fig1}. And you can use quarto way to refer to @fig-random-plot.
+
 
 ## Tables
 
 ```{r}
-#| classes: link
 #| link-id: tab1
 #| link-title: Mtcars Data
+#| label: tbl-mtcars
+#| tbl-cap: First five row of mtcars data
 
 head(mtcars)
 ```
 
-`r stringi::stri_rand_lipsum(1)`
-see \nameref{tab1}
+`r stringi::stri_rand_lipsum(1)`. See \nameref{tab1}. And you can use quarto way to refer to @tbl-mtcars.
 
 
 # Markdown Images
 
-:::: {.link link-id="fig2" link-title="Scatter plot of mpg"}
-::: {.cell-output-display}
+::: {.link link-id="fig2" link-title="Scatter plot"}
 
-![mpg](test-filename/mpg.png)
+![mpg ~ hp](images/mpg.png){#fig-fig2}
+
 :::
-::::
 
-`r stringi::stri_rand_lipsum(4)`
-
-see \nameref{fig2}
+`r stringi::stri_rand_lipsum(4)`. See \nameref{fig2}. And you can use quarto way to refer to @fig-fig2.
 
 
 # Markdown Table
 
-:::: {.link link-id="tab2" link-title="Markdown table"}
-::: {.cell-output-display}
-
+::: {.link link-id="tab2" link-title="Markdown table"}
 
 | Col1 | Col2 | Col3 |
 |------|------|------|
@@ -72,11 +68,8 @@ see \nameref{fig2}
 | E    | F    | G    |
 | A    | G    | G    |
 
-: My Caption
+: My Caption {#tbl-tab2}
 
 :::
-::::
 
-`r stringi::stri_rand_lipsum(4)`
-
-see \nameref{tab2}
+`r stringi::stri_rand_lipsum(4)`. See \nameref{tab2}. And you can use quarto way to refer to @tbl-tab2.
