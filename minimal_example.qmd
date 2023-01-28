@@ -1,0 +1,46 @@
+---
+title: "Using nameref"
+filters: 
+  - nameref
+---
+
+## Why Quarto is so great {#how}
+
+See \nameref{how}.
+
+
+## In code chunk
+
+```{r}
+#| link-id: fig1
+#| link-title: My Awesome plot
+
+plot(1:10)
+```
+
+See \nameref{fig1}.
+
+## In Markdown
+
+::: {.link link-id="fig2" link-title="Scatter plot"}
+
+![mpg ~ hp](images/mpg.png)
+
+:::
+
+See \nameref{fig2}.
+
+
+::: {.link link-id="tab2" link-title="Markdown table"}
+
+| Col1 | Col2 | Col3 |
+|------|------|------|
+| A    | B    | C    |
+| E    | F    | G    |
+| A    | G    | G    |
+
+: My Caption {#tbl-tab2}
+
+:::
+
+See \nameref{tab2}.
