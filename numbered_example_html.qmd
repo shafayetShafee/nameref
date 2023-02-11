@@ -1,25 +1,28 @@
 ---
-title: "Cross Referencing the Name (section name, fig-name, table-name)"
+title: "Using nameref"
 author: Shafayet Khan Shafee
 date: last-modified
 date-format: "DD MMM, YYYY"
-format:
+number-sections: true
+filters: 
+  - quarto
+  - nameref
+nameref:
+  section-number: true
+format: 
   html:
     code-tools: true
-  pdf: default
-number-sections: true
 df-print: kable
-filters: 
-  - nameref
 ---
 
 > View the source code of this document by clicking `</> Code` on top right corner.
 
+
 # Why Quarto is so great {#sec-stack}
 
-`r stringi::stri_rand_lipsum(1)`. See \nameref{sec-stack}. Also you can use quarto way to refer to @sec-stack.
+`r stringi::stri_rand_lipsum(1)`. See \nameref{sec-stack}.
 
-## How it is so {#how}
+## Why Quarto is so great {#how}
 
 `r stringi::stri_rand_lipsum(1)`. See \nameref{how}.
 
@@ -29,29 +32,29 @@ filters:
 #| link-id: fig1
 #| link-title: My Awesome plot
 #| label: fig-random-plot
-#| fig-cap: "An useless plot for demo"
+#| fig-cap: "My Awesome plot"
 
 plot(1:10)
 ```
 
-`r stringi::stri_rand_lipsum(1)`. See \nameref{fig1}. And you can use quarto way to refer to @fig-random-plot.
-
+`r stringi::stri_rand_lipsum(1)`. See @fig-random-plot \nameref{fig1}. And you can use quarto way to refer to @fig-random-plot. 
 
 ## Tables
 
 ```{r}
 #| link-id: tab1
-#| link-title: Mtcars Data
+#| link-title: First five row of mtcars data
 #| label: tbl-mtcars
 #| tbl-cap: First five row of mtcars data
 
 head(mtcars)
 ```
 
-`r stringi::stri_rand_lipsum(1)`. See \nameref{tab1}. And you can use quarto way to refer to @tbl-mtcars.
+`r stringi::stri_rand_lipsum(1)`. See @tbl-mtcars \nameref{tab1}. And you can use quarto way to refer to @tbl-mtcars.
 
 
 # Markdown Images
+
 
 ::: {.link link-id="fig2" link-title="Scatter plot"}
 
@@ -59,10 +62,11 @@ head(mtcars)
 
 :::
 
-`r stringi::stri_rand_lipsum(4)`. See \nameref{fig2}. And you can use quarto way to refer to @fig-fig2.
+`r stringi::stri_rand_lipsum(1)`. See @fig-fig2 \nameref{fig2}. And you can use quarto way to refer to @fig-fig2.
 
 
 # Markdown Table
+
 
 ::: {.link link-id="tab2" link-title="Markdown table"}
 
@@ -76,4 +80,4 @@ head(mtcars)
 
 :::
 
-`r stringi::stri_rand_lipsum(4)`. See \nameref{tab2}. And you can use quarto way to refer to @tbl-tab2.
+`r stringi::stri_rand_lipsum(1)`. See @tbl-tab2 \nameref{tab2}. And you can use quarto way to refer to @tbl-tab2.

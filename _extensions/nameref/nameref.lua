@@ -1,13 +1,15 @@
 local str = pandoc.utils.stringify
--- local p = quarto.log.output
+local p = quarto.log.output
 
-function get_header_data(data)
+function get_header_data(data, numbered)
   local get_headers = {
       -- get the Header text and header id from headers and 
       -- insert them into table `data` passed into `get_header_data`
       Header = function(el)
         local id = el.identifier
+        local number = numbered and el.attributes['number'] or ""
         local text = str(el.content):gsub("^[%d.]+ ", "")
+        text = number .. " " .. text
         table.insert(data, {id = id, text = text})
       end,
       
@@ -69,9 +71,13 @@ function Div(el)
 end
 
 function Pandoc(doc)
+  local meta = doc.meta
+  if meta.nameref then
+    local numbered = str(meta.nameref['section-number'])
+  end
   local header_data = {}
   -- populate the header_data table 
-  doc:walk(get_header_data(header_data))
+  doc:walk(get_header_data(header_data, numbered))
   -- generate named link inplaces with `\nameref`
   return doc:walk(change_ref(header_data))
 end
