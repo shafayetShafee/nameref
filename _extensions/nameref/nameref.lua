@@ -7,7 +7,7 @@ function get_header_data(data, numbered)
       -- insert them into table `data` passed into `get_header_data`
       Header = function(el)
         local id = el.identifier
-        local number = numbered and el.attributes['number'] or ""
+        local number = numbered=="true" and el.attributes['number'] or ""
         local text = str(el.content):gsub("^[%d.]+ ", "")
         text = number .. " " .. text
         table.insert(data, {id = id, text = text})
@@ -72,9 +72,8 @@ end
 
 function Pandoc(doc)
   local meta = doc.meta
-  if meta.nameref then
-    local numbered = str(meta.nameref['section-number'])
-  end
+  local numbered
+  local numbered = meta.nameref and str(meta.nameref['section-number'])
   local header_data = {}
   -- populate the header_data table 
   doc:walk(get_header_data(header_data, numbered))
