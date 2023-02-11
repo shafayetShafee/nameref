@@ -134,13 +134,13 @@ and the rendered output is,
 
 ### using figure and table number with nameref
 
-This filter provides no direct support to do this. But you can try a naive approach by using `@fig-id \nameref{id}` together :smile:.
+This filter provides no direct support to do this. But you can try a naive approach by using `@fig-id \nameref{id}` together :wink:.
 
 ### Demo
 
 [View a live demo of numbered `nameref`](https://shafayetshafee.github.io/nameref/numbered_example_html.html) of the rendered document in HTML output format and the source code [numbered_example_html.qmd](numbered_example_html.qmd)
 
-Also to see how numbered `nameref` looks like in pdf format, [download](https://github.com/shafayetShafee/nameref/raw/main/docs/numbered_example.pdf) the rendered pdf output of `numbered_example.qmd` file.
+Also to see how numbered `nameref` looks like in pdf format, [download](https://github.com/shafayetShafee/nameref/raw/main/docs/numbered_example.pdf) the rendered pdf output of [numbered_example.qmd](numbered_example.qmd) file.
 
 
 ## Limitations
